@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: portfolio-backend
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn portfolio_backend.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "*"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://your-netlify-app-name.netlify.app" # UPDATE THIS LATER
+
+databases:
+  - name: portfolio-db
+    databaseName: portfoliodb
+    user: dbuser

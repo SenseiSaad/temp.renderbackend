@@ -1,0 +1,23 @@
+{% extends "admin/index.html" %}
+{% load dashboard_tags %}
+
+{% block content %}
+{% get_dashboard_stats as stats %}
+<div id="content-main" style="width: 100%; margin-bottom: 20px;">
+    <div style="background:var(--header-bg); color: var(--header-link-color); padding:1rem; border-radius:4px; display:flex; justify-content:space-around; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+        <div style="text-align:center;">
+            <h3 style="margin:0; font-size:1.2rem;">Total Projects</h3>
+            <p style="margin:0; font-size:2rem; font-weight:bold;">{{ stats.projects }}</p>
+        </div>
+        <div style="text-align:center;">
+            <h3 style="margin:0; font-size:1.2rem;">Total Blogs</h3>
+            <p style="margin:0; font-size:2rem; font-weight:bold;">{{ stats.blogs }}</p>
+        </div>
+        <div style="text-align:center;">
+            <h3 style="margin:0; font-size:1.2rem;">Unread Messages</h3>
+            <p style="margin:0; font-size:2rem; font-weight:bold; color: {% if stats.unread_messages > 0 %}#e74c3c{% else %}inherit{% endif %};">{{ stats.unread_messages }}</p>
+        </div>
+    </div>
+</div>
+{{ block.super }}
+{% endblock %}
