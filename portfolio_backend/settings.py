@@ -79,7 +79,8 @@ WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 # }
 
 # Database Configuration (Detects Render's Postgres URL automatically, mostly falls back to SQLite locally)
-DATABASE_URL = config('DATABASE_URL', default=None)
+# Using internal URL by default for Render. Use the external URL in your local .env file.
+DATABASE_URL = config('DATABASE_URL', default='postgresql://portfolio_u188_user:SsRtd7pgNiOwGHuyuT4NTekoXSwpmPoV@dpg-d754g4f5r7bs73d729pg-a/portfolio_u188')
 
 if DATABASE_URL:
     DATABASES = {
